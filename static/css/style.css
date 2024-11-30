@@ -1,0 +1,141 @@
+body { 
+    font-family: Arial; 
+    max-width: 1000px; 
+    margin: 20px auto; 
+    padding: 20px; 
+}
+.form-group { 
+    margin-bottom: 15px; 
+}
+label { 
+    display: block; 
+    margin-bottom: 5px; 
+}
+input { 
+    width: 100%; 
+    padding: 8px; 
+    margin-bottom: 10px; 
+}
+button, .button { 
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.hint { 
+    font-size: 0.8em; 
+    color: #666; 
+    margin-top: -8px; 
+}
+.error { 
+    color: red; 
+    margin-bottom: 10px; 
+}
+.nav { 
+    margin-bottom: 20px; 
+}
+.nav a { 
+    color: #0066cc; 
+    text-decoration: none; 
+}
+.nav a:hover { 
+    text-decoration: underline; 
+}
+.controls { 
+    margin: 20px 0; 
+    padding: 15px; 
+    background: #f5f5f5; 
+    border-radius: 5px; 
+}
+.recording { 
+    border: 1px solid #ddd; 
+    margin: 15px 0; 
+    padding: 20px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.recording:hover { 
+    background-color: #f8f8f8; 
+}
+.metadata { 
+    color: #666; 
+    font-size: 0.9em; 
+    margin-bottom: 10px; 
+}
+.actions { 
+    margin-top: 10px; 
+}
+.play { background: #4CAF50; color: white; }
+.delete { background: #f44336; color: white; }
+.download { background: #2196F3; color: white; }
+.summary {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+} 
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.recording {
+    transition: all 0.3s ease;
+}
+
+.recording:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.error {
+    color: #f44336;
+    padding: 10px;
+    margin: 10px 0;
+    background: #ffebee;
+    border-radius: 4px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.download {
+    background: #2196F3;
+}
+
+.delete {
+    background: #f44336;
+}
+
+.button {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    color: #666;
+    text-decoration: none;
+    padding: 8px 0;
+}
+
+.back-link:hover {
+    color: #0066cc;
+} 

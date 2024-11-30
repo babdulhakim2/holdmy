@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Call Recordings Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <a href="/" class="back-link">← Back to Home </a>
+    </div>
+    
+    <h2>Call Recordings Manager</h2>
+    
+    <div class="summary">
+        <strong>Summary:</strong><br>
+        Total Recordings: {{ recordings|length }}<br>
+        Total Duration: {{ total_duration }} seconds<br>
+        Time Range: Last {{ days }} day(s)
+    </div>
+    
+    <div class="controls">
+        <label>Time Range:</label>
+        <select id="days-filter" onchange="updateFilters()">
+            <option value="1" {{ 'selected' if days == 1 else '' }}>Last 24 hours</option>
+            <option value="7" {{ 'selected' if days == 7 else '' }}>Last 7 days</option>
+            <option value="30" {{ 'selected' if days == 30 else '' }}>Last 30 days</option>
+        </select>
+    </div>
+
+    {% if recordings %}
+        {% for recording in recordings %}
+        <div class="recording" id="recording-{{ recording.sid }}">
+            <div class="metadata">
+                <strong>Date:</strong> {{ recording.date_created.strftime('%Y-%m-%d %H:%M:%S') }}<br>
+                <strong>Duration:</strong> {{ recording.duration|default('0') }} seconds<br>
+                <strong>Call SID:</strong> {{ recording.call_sid }}<br>
+                <strong>Recording SID:</strong> {{ recording.sid }}
+            </div>
+            
+            {% if recording.media_url %}
+            <audio controls>
+                <source src="{{ recording.media_url }}.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            
+            <div class="actions">
+                <a href="{{ recording.media_url }}.mp3" download class="button download">Download MP3</a>
+                <button onclick="deleteRecording('{{ recording.sid }}')" class="delete">Delete</button>
+            </div>
+            {% else %}
+            <div class="error">Recording URL not available</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No recordings found for the selected criteria.</p>
+    {% endif %}
+    
+    <p><a href="/" class="button">Back to Call Agent</a></p>
+    <script src="{{ url_for('static', filename='js/recordings.js') }}"></script>
+</body>
+</html> 

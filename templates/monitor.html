@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Call Monitor</title>
+    <style>
+        .transcript {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .dtmf {
+            color: #2196F3;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Live Call Monitor</h2>
+    <div id="transcripts"></div>
+    
+    <script>
+        const evtSource = new EventSource('/stream-transcripts');
+        const transcripts = document.getElementById('transcripts');
+        
+        evtSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const div = document.createElement('div');
+            div.className = 'transcript';
+            div.innerHTML = `
+                <div>${data.timestamp}</div>
+                <div>${data.text}</div>
+                ${data.dtmf ? `<div class="dtmf">DTMF: ${data.dtmf}</div>` : ''}
+            `;
+            transcripts.prepend(div);
+        };
+    </script>
+</body>
+</html> 
